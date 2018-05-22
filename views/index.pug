@@ -1,0 +1,65 @@
+doctype html
+html
+  head
+    title user list
+    script.
+      function deleteUser(self, user) {
+      function reqListener () {
+      console.log(this.responseText);
+      }
+      console.log(user);
+      var oReq = new XMLHttpRequest();
+      oReq.addEventListener('load', function () {
+      var res = JSON.parse(this.responseText);
+      console.log(res);
+      console.log(self);
+      if (res.success) self.parentElement.parentElement.remove();
+      });
+      oReq.open("POST", "/deleteuser");
+      oReq.setRequestHeader('Content-Type', 'application/json');
+      oReq.send(JSON.stringify({
+      user: user
+      }));
+      }
+      function editUser(self, user) {
+      window.location = '/edituser/' + user;
+      }
+      function search(){
+      window.location = '/search/' + document.getElementById('searchInput').value;
+      }
+      function sorta(){
+      window.location = '/sorta';
+      }
+      function sortra(){
+      window.location = '/sortra';
+      }
+    style
+  body
+    h1 This is my project n stuff, it needs more deep frying.
+    h4 this is the page where you read the table.
+    a(href='/createuser') create user
+    div
+      button(onclick='sorta()') sort alphebeticly by name
+    div
+      button(onclick='sortra()') sort reverse-alphebeticly by name
+    div
+      input(id='searchInput')
+      button(onclick='search()') submit search
+    table
+      tr
+        td name
+        td id
+        td email
+        td age
+        td delete user
+        td add user
+      each user in data
+        tr
+          td= user.name
+          td= user._id
+          td= user.email
+          td= user.age
+          td
+            button(onclick='deleteUser(this, \'' + user._id + '\')') delete user
+          td
+            button(onclick='editUser(this, \'' + user._id + '\')') edit user

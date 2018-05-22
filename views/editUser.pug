@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title edit user
+    link(rel='script' href='/script.js')
+  body
+    p this is soon to be the edit user page.
+    a(href = '/') Cancel and go back to user list.
+    form(method='POST', action='/updatetarget')
+      input(name='_id', style='display: none;', value=user._id)
+      span name
+      input(name='name', value=user.name, required)
+      br
+      span email address
+      input(name='email', value=user.email, required)
+      br
+      span age
+      input(name='age', value=user.age, required)
+      br
+      input(type='submit', id='addPerson')

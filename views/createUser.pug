@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    title create user
+    script 
+  body
+    a(href = '/') Cancel and go back to user list.
+    form(method='POST', action='/usertarget')
+      span name
+      input(name='name', value="", required)
+      br
+      span email address
+      input(name='email', value="", required)
+      br
+      span age
+      input(name='age', value="", required)
+      br
+      input(type='submit', value='Add', id='addPerson')
